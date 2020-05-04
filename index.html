@@ -1,0 +1,36 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.state = "";
+			$scope.getAns = function(){
+				if($scope.inpt == null || $scope.inpt == " ")
+					$scope.state = "Please Enter Data First";
+				else{
+					//An empty item like ", ," is not considered in the count
+					// this splits array with ',' and removes empty elements from the array
+					var arr = $scope.inpt.split(",").filter(function(x){return (x!= "" && x!=" ")});
+					var arrLen = arr.length; // This stores the length of above array
+					if(arrLen <= 3)
+						$scope.state = "Enjoy!";
+					else
+						$scope.state = "To much!";
+				}
+			};
+		});
+	</script>
+</head>
+
+<body>
+	
+	<div ng-app="app" ng-controller="ctrl" style="margin:15px">
+		Enter The Items You Eat : <input type="text" ng-model="inpt">
+		<button ng-click="getAns()">Check If Too Much</button>
+		<span>An empty item like ", ," is not considered in the count</span>
+		<p> {{state}} </p>
+	</div>
+</body>
+
+</html>
