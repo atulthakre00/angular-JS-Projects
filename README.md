@@ -1,1 +1,1 @@
-# angJsSoln.github.io
+# angular-JS-Projects
